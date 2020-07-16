@@ -1,0 +1,28 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  generation: 5
+  name: yoj-grafana
+  namespace: default
+spec:
+  rules:
+  - host: yoj-prometheus.zihchdomains.com
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-server
+          servicePort: 9090
+        path: /
+  - host: yoj-grafana.zihchdomains.com
+    http:
+      paths:
+      - backend:
+          serviceName: grafana
+          servicePort: 3000
+        path: /
+status:
+  loadBalancer: {}
